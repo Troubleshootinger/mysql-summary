@@ -1,0 +1,27 @@
+                                                     SQL入门
+·SQL分类
+       · DDL：数据定义语言，这些语句定义了不同的数据段、数据库、表、列、索引等数据库对象的定义。常用的语句关键字包括create、drop、alter等
+       · DML：数据操纵语句，用于添加、删除、更新、和查询数据库记录，并检查数据完整性。常用的语句关键字包括insert、delete、update、select等
+       · DCL：数据控制语句，用于控制不同数据段直接的许可和访问级别的语句，这些语句定义了数据库、表、字段、用户的访问权限和安全级别，包括grant、revoke等
+* DDL语句，它和DML语句最大的区别是DML只是对表内部数据的操作，而不涉及表的定义、结构的修改，更不会涉及其他对象。DDL语句更多的被数据库管理员DBA使用
+
+1[DDL]，create table emp(ename varchar(10),hiredate date,sal decimal(10,2),deptno int(2));创建表
+  ·1.1 desc emp;查看表
+  ·1.2 show create table emp \G;输出详细的表结构
+  ·1.3 alter table emp modify ename varchar(20);修改表
+  ·1.4 alter table emp add column age int(3);增减表字段
+  ·1.5 alter table emp drop column age;删除表
+  ·1.6 alter table emp change age age1 int(4);改名
+  ·1.7 alter table emp add birth date after ename;将新增的字段birth添加至ename之后
+  ·1.8 alter table emp modify age int(3) first;将age字段添加至第一行
+  ·1.9 alter table emp rename emp1;更改表名
+
+2[DML]
+  ·2.1 insert into emp (ename,hiredate,sal,deptno)values('zzxl','2016-01-01','2000',1);向表中插入记录
+  ·2.2 select * from emp;查询表中的值
+  ·2.3 create table dept (deptno int(2),deptname varchar(20)); insert into dept values(1,'tech'),(2,'sale'),(3,'fin'),(5,'dept5'),       (6,'dept6');一次性向表中插入多条数据
+  ·2.4 update emp set sal=5000 where ename='lisa';在emp表中，把sal=3000改成5000
+  ·2.5 delete from emp where ename='dony';删除表中指定的数据
+  ·2.6 delete a,b from emp a,dept b where a.deptno=b.deptno and a.deptno=3;删除emp,dept表中相同的3号
+  ·2.7 select * from emp order by sal;把表中按照工资高低进行排序，默认是升序 【DESC：降序】
+  ·2.8 select * from emp order by sal limit 3 desc;在emp表中以sal价格升序的方式显示前3行
